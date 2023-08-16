@@ -1,0 +1,21 @@
+<section class="container d-flex flex-column align-items-center  border border-1 border-dark-subtle p-3 m-3 gap-4"
+    *ngFor="let user of users">
+    <img [src]="user.image" class="w-25 rounded-circle">
+    <h3 class="d-block">{{user.first_name}}</h3>
+    <div class="d-flex justify-content-around w-100">
+        <div>
+            <i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+            <p>Ver detalle</p>
+        </div>
+        <div>
+            <i class="fa-solid fa-arrows-rotate" style="color: #000000;"></i>
+            <p>Actualizar</p>
+        </div>
+        <div>
+            <span></span>
+            <i class="fa-solid fa-trash" style="color: #000000;"></i>
+            <p>Borrar</p>
+        </div>
+    </div>
+
+</section>
