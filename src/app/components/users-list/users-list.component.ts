@@ -12,6 +12,5 @@ export class UsersListComponent {
 
   constructor(private usersService: UsersService) {
     this.users = this.usersService.getAllUsers()
-    console.log(this.users)
   }
 }

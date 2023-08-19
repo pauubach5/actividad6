@@ -5,27 +5,46 @@
             <label for="first_name">Nombre Del Usuario</label>
             <input class="form-control" type="text" id="first_name" placeholder="Introduzca nombre de usuario"
                 formControlName="first_name">
+            <p class="error" *ngIf="checkInput('first_name', 'required')">El
+                campo es requerido
+            </p>
+            <p class="error" *ngIf="checkInput('first_name', 'minlength')">
+                La longitud minima es de 3 caracteres
+            </p>
         </div>
         <div class="form-group">
             <label for="last_name">Apellido Del Usuario</label>
             <input class="form-control" type="text" id="last_name" placeholder="Introduzca apellido de usuario"
                 formControlName="last_name">
+            <p class="error" *ngIf="checkInput('last_name', 'required')">El
+                campo es requerido
+            </p>
         </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input class="form-control" type="text" id="username" placeholder="Introduzca apellido de usuario"
-                formControlName="username">
-        </div>
+
         <div class="form-group">
             <label for="email">Email Usuario</label>
             <input class="form-control" type="text" id="email" placeholder="Introduzca email de usuario"
                 formControlName="email">
+            <p class="error" *ngIf="checkInput('email', 'required')">El
+                campo es requerido
+            </p>
+            <p class="error" *ngIf="checkInput('email', 'pattern')">El
+                email introducido es incorrecto
+            </p>
+
         </div>
         <div class="form-group">
             <label for="image">Imagen Usuario</label>
             <input type="text" class="form-control" id="image" placeholder="Introduzca url de foto de usuario"
                 formControlName="image">
+            <p class="error" *ngIf="checkInput('image', 'required')">El
+                campo es requerido
+            </p>
+            <p class="error" *ngIf="checkInput('image', 'pattern')">
+                La URL introducida es incorrecta
+            </p>
         </div>
-        <input type="submit" value="Guardar" class="d-inline-block w-25 p-2 btn btn-primary">
+        <input type="submit" value="Guardar" class="d-inline-block w-25 p-2 btn btn-primary"
+            [disabled]="!newUserForm.valid">
     </form>
 </section>

@@ -117,8 +117,5 @@ const API: any = {
 
 export class HomeComponent {
   userLists: [] = API.results
-  constructor() {
-    console.log(this.userLists)
-  }
 }
 
