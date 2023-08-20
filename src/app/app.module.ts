@@ -3,13 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
-import { FormNewUserComponent } from './components/form-new-user/form-new-user.component';
+import { FormNewUserComponent } from './pages/form-new-user/form-new-user.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DetailsComponent } from './components/details/details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Error404Component } from './pages/error404/error404.component';
+import { UserViewComponent } from './pages/user-view/user-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersListComponent,
     FormNewUserComponent,
     HeaderComponent,
-    DetailsComponent
+    Error404Component,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,

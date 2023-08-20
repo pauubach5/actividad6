@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
+
 
 @Component({
   selector: 'app-users-list',
@@ -9,8 +10,8 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class UsersListComponent {
   users: User[] = []
-
-  constructor(private usersService: UsersService) {
+  usersService = inject(UsersService);
+  constructor() {
     this.users = this.usersService.getAllUsers()
   }
 }

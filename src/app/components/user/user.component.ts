@@ -7,5 +7,5 @@ import { User } from 'src/app/interfaces/user.interface';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent {
-  @Input() users: User[] = []
+  @Input() myUsers!: User
 }
