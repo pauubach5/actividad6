@@ -3,13 +3,14 @@
     <h3 class="d-block">{{myUsers.first_name}}</h3>
     <div class="d-flex justify-content-around w-100">
         <div>
-            <p class="hover" [routerLink]="['user', myUsers.id]">Ver detalle</p>
+            <a class="link-dark link-underline-opacity-0" [routerLink]="['/user', myUsers._id]">Ver detalle</a>
         </div>
         <div>
-            <p>Actualizar</p>
+            <a class="link-dark link-underline-opacity-0 hover"
+                [routerLink]="['/updateuser', myUsers._id]">Actualizar</a>
         </div>
         <div>
-            <p>Borrar</p>
+            <a class="link-dark link-underline-opacity-0 hover">Borrar</a>
         </div>
     </div>
 </div>

@@ -37,7 +37,7 @@ export class FormNewUserComponent {
       this.router.navigate(['/'])
     }
     else {
-      alert('El usuario no se ha podido registrar')
+      console.error('El usuario no se ha podido registrar')
     }
     this.newUserForm.reset()
   }

@@ -6,10 +6,11 @@ import { Error404Component } from './pages/error404/error404.component';
 import { UserViewComponent } from './pages/user-view/user-view.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'newuser', component: FormNewUserComponent },
-  { path: 'home/user/:userid', component: UserViewComponent },
+  { path: 'updateuser/:userid', component: FormNewUserComponent },
+  { path: 'user/:userid', component: UserViewComponent },
   { path: '**', component: Error404Component }
 ];
 

@@ -1,19 +1,16 @@
 <section class="section-container d-flex align-items-start justify-content-center">
     <div class="border-end border-black border-2">
-        <img [src]="this.detailedUser.image" [alt]="this.detailedUser.first_name"
+        <img [src]="this.detailedUser?.image" [alt]="this.detailedUser?.first_name"
             class="py-3 px-5 profile-image h-50 rounded-circle">
-
     </div>
-
     <div class="py-5 px-3 height-auto d-flex flex-column text-left align-items-start">
-        <h3 class="p-2">{{this.detailedUser.first_name}}</h3>
-        <h3 class="p-2">{{this.detailedUser.last_name}}</h3>
-        <p class="p-2"><span class="fw-bold">Nombre de usuario: </span> {{this.detailedUser.username}}</p>
-        <p class="p-2"><span class="fw-bold">Email: </span> {{this.detailedUser.email}}</p>
+        <h3 class="p-2">{{this.detailedUser?.first_name}}</h3>
+        <h3 class="p-2">{{this.detailedUser?.last_name}}</h3>
+        <p class="p-2"><span class="fw-bold">Nombre de usuario: </span> {{this.detailedUser?.username}}</p>
         <div class="p-2 btn-group" role="group" aria-label="Button group">
-            <button type="button" class="btn btn-outline-dark ">Eliminar</button>
-            <button type="button" class="btn btn-outline-dark">Actualizar</button>
-            <button type="button" class="btn btn-outline-dark" [routerLink]="['/home']">Volver a listado</button>
+            <a class="btn btn-outline-dark" (click)="deletePost(detailedUser?._id)">Eliminar</a>
+            <a class="btn btn-outline-dark">Actualizar</a>
+            <a class="btn btn-outline-dark" [routerLink]="['/home']">Volver a listado</a>
         </div>
     </div>
 
