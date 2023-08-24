@@ -10,7 +10,7 @@
                 [routerLink]="['/updateuser', myUsers._id]">Actualizar</a>
         </div>
         <div>
-            <a class="link-dark link-underline-opacity-0 hover">Borrar</a>
+            <a class="link-dark link-underline-opacity-0 hover" (click)="deleteUser(myUsers?._id)">Borrar</a>
         </div>
     </div>
 </div>

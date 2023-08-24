@@ -8,8 +8,8 @@
         <h3 class="p-2">{{this.detailedUser?.last_name}}</h3>
         <p class="p-2"><span class="fw-bold">Nombre de usuario: </span> {{this.detailedUser?.username}}</p>
         <div class="p-2 btn-group" role="group" aria-label="Button group">
-            <a class="btn btn-outline-dark" (click)="deletePost(detailedUser?._id)">Eliminar</a>
-            <a class="btn btn-outline-dark">Actualizar</a>
+            <a class="btn btn-outline-dark" (click)="deleteUser(detailedUser?._id)">Eliminar</a>
+            <a class="btn btn-outline-dark" [routerLink]="['/updateuser', detailedUser?._id]">Actualizar</a>
             <a class="btn btn-outline-dark" [routerLink]="['/home']">Volver a listado</a>
         </div>
     </div>

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
@@ -33,12 +33,28 @@ export class UserViewComponent {
     })
   }
 
-  async deletePost(id: string): Promise<void> {
-    alert(`Está seguro que desea borrar a ${this.detailedUser?.first_name + ' ' + this.detailedUser?.last_name}?`)
-    let response = await this.usersService.delete(id)
-    if (response) {
-      alert('El producto se ha borrado correctamente')
-      this.router.navigate(['/home'])
-    }
+  async deleteUser(id: string): Promise<void> {
+    let response;
+    Swal.fire({
+      title: 'Está seguro?',
+      text: "Eliminar este usuario es una acción irreversible",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, borralo!',
+      cancelButtonText: 'Cancelar'
+
+    }).then(async result => {
+      response = await this.usersService.delete(id)
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado!',
+          'El usuario ha sido eliminado correctamente',
+          'success'
+        )
+        this.router.navigate(['/home'])
+      }
+    })
   }
 }

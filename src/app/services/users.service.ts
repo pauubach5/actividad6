@@ -1,6 +1,5 @@
 import { Injectable, inject } from '@angular/core';
 import { User } from '../interfaces/user.interface';
-import { USERS } from '../db/users.db';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { Api } from '../interfaces/api.interface';
@@ -9,8 +8,6 @@ import { Api } from '../interfaces/api.interface';
   providedIn: 'root'
 })
 export class UsersService {
-  private arrUsers: User[] = USERS.results
-  //!!!!!!!!!!!ALERTA AMB ELS IDS, POSAR RANDOMID PERQUE NO ES REPETEIXIN
   private id!: string
   httpClient = inject(HttpClient)
   private baseUrl: string = "https://peticiones.online/api/users/"
@@ -27,17 +24,25 @@ export class UsersService {
     return lastValueFrom(this.httpClient.delete<any>(`${this.baseUrl}${id}`))
   }
 
-
-  addUser(user: User): any {
-    let newUser = user
-
-    if (this.arrUsers.findIndex(user => user.email === newUser.email && user.username === newUser.username) === -1) {
-      user._id = this.id
-      this.arrUsers.push(newUser)
-      return 'ok'
-    }
-    else {
-      alert('Usuario Duplicado')
-    }
+  add(formValue: User): Promise<User> {
+    return lastValueFrom(this.httpClient.post<any>(this.baseUrl, formValue))
   }
+
+  update(formValue: User): Promise<User> {
+    return lastValueFrom(this.httpClient.put<any>(`${this.baseUrl}${formValue._id}`, formValue))
+  }
+
+
+  // addUser(user: User): any {
+  //   let newUser = user
+
+  //   if (this.arrUsers.findIndex(user => user.email === newUser.email && user.username === newUser.username) === -1) {
+  //     user._id = this.id
+  //     this.arrUsers.push(newUser)
+  //     return 'ok'
+  //   }
+  //   else {
+  //     alert('Usuario Duplicado')
+  //   }
+  // }
 }

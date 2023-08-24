@@ -1,6 +1,6 @@
 <section class="m-5">
     <h2 class="fs-4 mb-5">NUEVO USUARIO</h2>
-    <form class="d-flex flex-column gap-4 w-100" [formGroup]="newUserForm" (ngSubmit)="submitNewUser()">
+    <form class="d-flex flex-column gap-4 w-100" [formGroup]="newUserForm" (ngSubmit)="addUser()">
         <div class="form-group">
             <label for="first_name">Nombre Del Usuario</label>
             <input class="form-control" type="text" id="first_name" placeholder="Introduzca nombre de usuario"
@@ -46,6 +46,5 @@
         </div>
         <input type="submit" value="Guardar" class="d-inline-block w-25 p-2 btn btn-outline-dark"
             [disabled]="!newUserForm.valid">
-        <input type="button" value="Editar" class="d-inline-block w-25 p-2 btn btn-primary" (click)=" editForm()">
     </form>
 </section>

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -12,9 +12,11 @@ export class FormNewUserComponent {
   newUserForm: FormGroup;
   usersService: any = inject(UsersService)
   router = inject(Router)
+  activatedRoute = inject(ActivatedRoute)
+
   constructor() {
     this.newUserForm = new FormGroup({
-      //Poner un id que se genere de forma random
+      _id: new FormControl('', []),
       first_name: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
@@ -31,27 +33,57 @@ export class FormNewUserComponent {
         Validators.pattern(/^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/)]),
     }, []);
   }
-  submitNewUser() {
-    let response = this.usersService.addUser(this.newUserForm.value)
-    if (response === 'ok') {
-      this.router.navigate(['/'])
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(async (params: any) => {
+      let id: string = params.userid
+
+      if (id !== undefined) {
+        let response = await this.usersService.getById(id)
+
+        let obj = {
+          _id: response._id,
+          first_name: response.first_name,
+          last_name: response.last_name,
+          email: response.email,
+          image: response.image
+        }
+        this.newUserForm.setValue(obj)
+      }
+    })
+
+  }
+
+  async addUser() {
+    let newUserValue = this.newUserForm.value
+    if (newUserValue._id) {
+      //Update
+      let response = await this.usersService.update(newUserValue)
+      if (response._id) {
+        alert('Usuario actualizado correctamente')
+        //He puesto el navigate hacia la vista Detalle, en lugar del Home, porque me parece mas intuitivo para el usuario.
+        this.router.navigate([`/user/${response._id}`])
+      }
+      else {
+        alert('Error al actualizar el usuario')
+      }
     }
     else {
-      console.error('El usuario no se ha podido registrar')
+      //Insert
+      let response = await this.usersService.add(newUserValue)
+      if (response._id) {
+        alert('Usuario insertado correctamente')
+        this.router.navigate(['/home'])
+      }
+      else {
+        alert('Ha habido un error al insertar el usuario, intentalo otra vez')
+      }
     }
-    this.newUserForm.reset()
+
   }
+
   checkInput(formControlName: string, validator: string): boolean | undefined {
     return this.newUserForm.get(formControlName)?.hasError(validator) && this.newUserForm.get(formControlName)?.touched
   }
 
-  editForm() {
-    let obj = {
-      first_name: 'Miau',
-      last_name: 'j',
-      email: 'oa',
-      image: 'jaosd',
-    }
-    this.newUserForm.setValue(obj)
-  }
 }
