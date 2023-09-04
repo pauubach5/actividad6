@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Error404Component } from './pages/error404/error404.component';
 import { UserViewComponent } from './pages/user-view/user-view.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { UserViewComponent } from './pages/user-view/user-view.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
